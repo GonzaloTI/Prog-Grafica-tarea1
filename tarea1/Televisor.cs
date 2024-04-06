@@ -80,6 +80,8 @@ namespace tarea1
         {
             shader.Use();
 
+           
+
             var move = Matrix4.Identity;
             move = move * Matrix4.CreateTranslation(origen.X, origen.Y, origen.Z);
 
@@ -91,5 +93,8 @@ namespace tarea1
             dibujarBaseTV();
             dibujarTronco();
         }
+
+
+
     }
 }

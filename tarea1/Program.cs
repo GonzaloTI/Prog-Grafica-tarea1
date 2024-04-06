@@ -14,7 +14,7 @@ namespace LearnOpenTK
             var nativeWindowSettings = new NativeWindowSettings()
             {
                 Size = new Vector2i(900, 700),
-                Title = "Tarea 1 - Televisor",
+                Title = "Tarea 2 - Televisor Objetos",
             };
 
             using (var game = new tarea1.Game(GameWindowSettings.Default, nativeWindowSettings))
