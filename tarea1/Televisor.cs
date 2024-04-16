@@ -7,43 +7,48 @@ namespace tarea1
 {
  
     public class Televisor
-    {
-        private float[] vertices = {
-            -0.15f, -0.20f, 0f,  // Primer punto (base)
-            0.15f, -0.20f, 0f,
-           -0.15f, -0.20f, -0.3f,  
-            0.15f, -0.20f, -0.3f,
-
-            -0.17f, 0.10f, -0.10f,  // Primer punto (cuerpo)//4
-            0.17f, 0.10f, -0.10f,
-           -0.17f, -0.10f, -0.10f, 
-            0.17f, -0.10f, -0.10f,
-
-            -0.17f, 0.10f, -0.25f,  // Primer punto (cuerpo detras) //8
-            0.17f, 0.10f, -0.25f,
-           -0.17f, -0.10f, -0.25f,
-            0.17f, -0.10f, -0.25f,
-
-            -0.02f, -0.20f, -0.10f,  // Primer punto (tronco)//12
-            0.02f, -0.20f, -0.10f,
-            -0.02f, -0.20f, -0.25f,  
-            0.02f, -0.20f, -0.25f,
-
-           -0.02f, -0.10f, -0.10f,  // Primer punto (tronco arriba)//16
-            0.02f, -0.10f, -0.10f,
-           -0.02f, -0.10f, -0.25f,
-            0.02f, -0.10f, -0.25f,
-
-
-        };
-
+    {  
+        
         Shader shader;
+       
         private Vector3 origen;
 
+        private float[] vertices;
+
+      
         public Televisor(Shader shader, Vector3 origen)
         {
             this.shader = shader;
             this.origen = origen;
+
+            // Definir los vértices en función del origen
+            vertices = new float[] {
+                // Coordenadas X, Y, Z relativas al origen
+                -0.15f + origen.X, -0.20f + origen.Y, 0f + origen.Z,  // Primer punto (base)
+                0.15f + origen.X, -0.20f + origen.Y, 0f + origen.Z,
+                -0.15f + origen.X, -0.20f + origen.Y, -0.3f + origen.Z,
+                0.15f + origen.X, -0.20f + origen.Y, -0.3f + origen.Z,
+
+                -0.17f + origen.X, 0.10f + origen.Y, -0.10f + origen.Z,  // Primer punto (cuerpo)
+                0.17f + origen.X, 0.10f + origen.Y, -0.10f + origen.Z,
+                -0.17f + origen.X, -0.10f + origen.Y, -0.10f + origen.Z,
+                0.17f + origen.X, -0.10f + origen.Y, -0.10f + origen.Z,
+
+                -0.17f + origen.X, 0.10f + origen.Y, -0.25f + origen.Z,  // Primer punto (cuerpo detras)
+                0.17f + origen.X, 0.10f + origen.Y, -0.25f + origen.Z,
+                -0.17f + origen.X, -0.10f + origen.Y, -0.25f + origen.Z,
+                0.17f + origen.X, -0.10f + origen.Y, -0.25f + origen.Z,
+
+                -0.02f + origen.X, -0.20f + origen.Y, -0.10f + origen.Z,  // Primer punto (tronco)
+                0.02f + origen.X, -0.20f + origen.Y, -0.10f + origen.Z,
+                -0.02f + origen.X, -0.20f + origen.Y, -0.25f + origen.Z,
+                0.02f + origen.X, -0.20f + origen.Y, -0.25f + origen.Z,
+
+                -0.02f + origen.X, -0.10f + origen.Y, -0.10f + origen.Z,  // Primer punto (tronco arriba)
+                0.02f + origen.X, -0.10f + origen.Y, -0.10f + origen.Z,
+                -0.02f + origen.X, -0.10f + origen.Y, -0.25f + origen.Z,
+                0.02f + origen.X, -0.10f + origen.Y, -0.25f + origen.Z
+            };
         }
 
         void dibujarBase()
@@ -82,11 +87,7 @@ namespace tarea1
 
            
 
-            var move = Matrix4.Identity;
-            move = move * Matrix4.CreateTranslation(origen.X, origen.Y, origen.Z);
-
-            shader.SetMatrix4("origen", move);
-
+         
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
             dibujarBase();
